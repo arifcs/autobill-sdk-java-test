@@ -1,0 +1,22 @@
+.top-bar{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    margin-bottom: 20px;
+}
+.alert-container{
+    text-align: center;
+    position: fixed;
+    width: 100%;
+}
+.alert-container .alert{
+    max-width: 950px;
+    margin: auto;
+}
+
+li {
+    word-break: break-all;
+}
