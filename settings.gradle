@@ -1,0 +1,2 @@
+include(':absdk')
+project(':absdk').projectDir = new File("autobill-sdk-java")
