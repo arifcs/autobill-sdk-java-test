@@ -16,50 +16,49 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-10 offset-sm-1 top-bar">
-
-            <a class="btn btn-primary" href="<?php echo $connector->getConnectURL(); ?>">Connect AutoBill</a>
+            <g:link class="btn btn-primary" url="${apiConfig.getAuthorizeUrl()}">Connect AutoBill</g:link>
             <a class="btn btn-danger" href="invalidate.php">Invalidate token</a>
             <a class="btn btn-primary" href="renew.php">Renew token</a>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-10 offset-sm-1">
-            <form action="save.php">
+            <g:form action="save">
                 <div class="form-group">
                     <label for="apiURL">API URL</label>
-                    <input type="text" class="form-control" name="apiUrl" id="apiURL" aria-describedby="apiURLHelp" value="<?php echo $connector->apiUrl;  ?>" />
+                    <input type="text" class="form-control" name="apiUrl" id="apiURL" aria-describedby="apiURLHelp" value="${apiConfig.getApiUrl()}" />
                 </div>
                 <div class="form-group">
                     <label for="appURL">APP URL</label>
-                    <input type="text" class="form-control" name="appUrl"  id="appURL" aria-describedby="appURLHelp" value="<?php echo $connector->appUrl;  ?>" />
+                    <input type="text" class="form-control" name="appUrl"  id="appURL" aria-describedby="appURLHelp" value="${apiConfig.getAppUrl()}" />
                 </div>
                 <div class="form-group">
                     <label for="clientID">Client ID</label>
-                    <input type="text" class="form-control" name="clientId"  id="clientID" aria-describedby="clientIDHelp" value="<?php echo $connector->clientId;  ?>" />
+                    <input type="text" class="form-control" name="clientId"  id="clientID" aria-describedby="clientIDHelp" value="${apiConfig.getClientId()}" />
                     <small id="clientIDHelp" class="form-text text-muted">Create an application in AutoBill and put the generated Client ID here</small>
                 </div>
                 <div class="form-group">
                     <label for="clientSecret">Client Secret</label>
-                    <input type="text" class="form-control" name="clientSecret"  id="clientSecret" aria-describedby="clientSecretHelp" value="<?php echo $connector->clientSecret;  ?>" />
+                    <input type="text" class="form-control" name="clientSecret"  id="clientSecret" aria-describedby="clientSecretHelp" value="${apiConfig.getClientSecret()}" />
                     <small id="clientSecretHelp" class="form-text text-muted">Put the generated Client Secret here</small>
                 </div>
                 <div class="form-group">
                     <label for="redirectURL">Redirect URL</label>
-                    <input type="text" class="form-control" name="redirectUrl"   id="redirectURL" aria-describedby="redirectURLHelp" value="<?php echo $redirectUrl;  ?>" />
+                    <input type="text" class="form-control" name="redirectUrl"   id="redirectURL" aria-describedby="redirectURLHelp" value="${apiConfig.getRedirectUrl()}" />
                     <small id="redirectURLHelp" class="form-text text-muted">Should be same as in the application in AutoBill</small>
                 </div>
                 <div class="form-group">
                     <label for="redirectURL">Access Token</label>
-                    <span class="text-info"><?php echo $connector->accessToken;  ?></span>
+                    <span class="text-info">${apiConfig.getAccessToken()}</span>
                     <small id="accessTokenHelp" class="form-text text-muted">Will be generated once connected to AutoBill</small>
                 </div>
                 <div class="form-group">
                     <label for="redirectURL">Refresh Token</label>
-                    <span class="text-info"><?php echo $connector->refreshToken;  ?></span>
+                    <span class="text-info">${apiConfig.getRefreshToken()}</span>
                     <small id="refreshTokenHelp" class="form-text text-muted">Will be generated once connected to AutoBill</small>
                 </div>
                 <button type="submit" class="btn btn-primary">Save</button>
-            </form>
+            </g:form>
         </div>
     </div>
 
