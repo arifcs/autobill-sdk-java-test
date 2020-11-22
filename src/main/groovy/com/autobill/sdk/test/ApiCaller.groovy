@@ -7,7 +7,7 @@ import com.mashape.unirest.http.Unirest
 class ApiCaller {
     public static String getAccessToken(APIConfig apiConfig, String code){
         try {
-            HttpResponse<String> response = Unirest.post("${apiConfig.getAppUrl()}/api/v1/oauth2/token")
+            HttpResponse<String> response = Unirest.post("${apiConfig.getApiUrl()}/api/v1/oauth2/token")
                     .header("content-type", "application/json")
                     .header("cache-control", "no-cache")
                     .body("{  \"grant_type\": \"authorization_code\", " +

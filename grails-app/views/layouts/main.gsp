@@ -35,13 +35,10 @@
         <div class="col-sm-12">
             <ul class="nav justify-content-center">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php">Home</a>
+                    <g:link url="/" class="nav-link" >Home</g:link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="account.php">Account</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="README.md">README.md</a>
+                    <g:link controller="testApi" action="getAccount" class="nav-link" >Account</g:link>
                 </li>
             </ul>
         </div>
