@@ -1,1 +1,1 @@
-# autobill-sdk-java-testApi
+# autobill-sdk-java-account

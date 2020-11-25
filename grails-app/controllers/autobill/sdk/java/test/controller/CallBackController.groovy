@@ -1,7 +1,7 @@
 package autobill.sdk.java.test.controller
 
+import com.autobill.connect.APICaller
 import com.autobill.connect.APIConfig
-import com.autobill.connect.ApiCaller
 import com.autobill.sdk.test.config.ConfigManager
 
 import groovy.json.JsonSlurper
@@ -15,7 +15,7 @@ class CallBackController {
             redirect(action: "index", controller :"home")
             return
         }
-        String response = ApiCaller.getAccessToken(ConfigManager.getConfig(), code)
+        String response = APICaller.getAccessToken(ConfigManager.getConfig(), code)
         if(response == null){
             flash.message = "Could not connect"
             redirect(action: "index", controller :"home")

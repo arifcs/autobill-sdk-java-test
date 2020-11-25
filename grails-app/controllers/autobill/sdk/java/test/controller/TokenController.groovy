@@ -1,7 +1,7 @@
 package autobill.sdk.java.test.controller
 
+import com.autobill.connect.APICaller
 import com.autobill.connect.APIConfig
-import com.autobill.connect.ApiCaller
 import com.autobill.sdk.test.config.ConfigManager
 import groovy.json.JsonSlurper
 
@@ -19,7 +19,7 @@ class TokenController {
 
     def renew(){
         APIConfig apiConfig = ConfigManager.getConfig()
-        String response = ApiCaller.renewToken(apiConfig)
+        String response = APICaller.renewToken(apiConfig)
 
         if(response == null){
             flash.message = "Could not connect"

@@ -40,7 +40,7 @@
                     <g:link url="/" class="nav-link" >Home</g:link>
                 </li>
                 <li class="nav-item">
-                    <g:link controller="testApi" action="getAccount" class="nav-link" >Account</g:link>
+                    <g:link controller="account" action="list" class="nav-link" >Account</g:link>
                 </li>
             </ul>
         </div>
