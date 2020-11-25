@@ -1,7 +1,7 @@
 package autobill.sdk.java.test.controller
 
 import com.autobill.connect.APIConfig
-import com.autobill.sdk.test.ApiCaller
+import com.autobill.connect.ApiCaller
 import com.autobill.sdk.test.config.ConfigManager
 
 import groovy.json.JsonSlurper
