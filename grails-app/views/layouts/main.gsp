@@ -20,14 +20,16 @@
 </head>
 
 <body>
-<div class="alert-container" id="alertBox">
-    <div class="alert alert-primary alert-dismissible fade show" role="alert">
-        <strong>MSG</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="document.getElementById('alertBox').remove()">
-            <span aria-hidden="true">&times;</span>
-        </button>
+<g:if test="${flash?.message}">
+    <div class="alert-container" id="alertBox">
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <strong>${flash.message}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="document.getElementById('alertBox').remove()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
     </div>
-</div>
+</g:if>
 
 <div class="jumbotron text-center">
     <h1>AutoBill Mini Client</h1>
