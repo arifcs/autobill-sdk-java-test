@@ -19,7 +19,10 @@
   </div>
   <h2>List</h2>
   <div class="row">
-    <g:if test="${accountList != null && accountList.size() > 0}">
+    <g:if test="${accountList == null}">
+      <strong>Connection issue</strong>
+    </g:if>
+    <g:elseif test="${accountList.size() > 0}">
       <table class="table table-bordered table-hover">
         <thead>
         <tr>
@@ -37,7 +40,7 @@
         </g:each>
         </tbody>
       </table>
-    </g:if>
+    </g:elseif>
     <g:else>
       <strong>No account available</strong>
     </g:else>
