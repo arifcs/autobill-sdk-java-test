@@ -20,14 +20,16 @@
 </head>
 
 <body>
-<div class="alert-container" id="alertBox">
-    <div class="alert alert-primary alert-dismissible fade show" role="alert">
-        <strong>MSG</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="document.getElementById('alertBox').remove()">
-            <span aria-hidden="true">&times;</span>
-        </button>
+<g:if test="${flash?.message}">
+    <div class="alert-container" id="alertBox">
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <strong>${flash.message}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="document.getElementById('alertBox').remove()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
     </div>
-</div>
+</g:if>
 
 <div class="jumbotron text-center">
     <h1>AutoBill Mini Client</h1>
@@ -35,13 +37,10 @@
         <div class="col-sm-12">
             <ul class="nav justify-content-center">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php">Home</a>
+                    <g:link url="/" class="nav-link" >Home</g:link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="account.php">Account</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="README.md">README.md</a>
+                    <g:link controller="account" action="list" class="nav-link" >Account</g:link>
                 </li>
             </ul>
         </div>
