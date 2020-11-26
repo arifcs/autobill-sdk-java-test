@@ -50,16 +50,28 @@ class AccountController {
 
     def edit(){
         String newName = "UpdatedName-"+new Date().getTime()
+        Account account = null
         try {
             APIConfig apiConfig = ConfigManager.getConfig()
             Map<String, String> map = new HashMap<String, String>()
             map.put("name",newName)
             map.put("description","Updated with API at "+new Date().toString())
-            AccountDao.update(apiConfig, params.id, map)
+            account = AccountDao.update(apiConfig, params.id, map)
         } catch (Exception e) {
             e.printStackTrace()
         }
-        flash.message = "Name updated to "+newName
+        flash.message = "Name updated to "+ account.name
+        redirect(action:"list")
+    }
+
+    def delete(){
+        try {
+            APIConfig apiConfig = ConfigManager.getConfig()
+            AccountDao.delete(apiConfig, params.id)
+        } catch (Exception e) {
+            e.printStackTrace()
+        }
+        flash.message = "Deleted "+params.id
         redirect(action:"list")
     }
 }
