@@ -1,7 +1,14 @@
 # AutoBill JAVA SDK Tester
 
+**Project Setup**
+1. Clone the project https://github.com/arifcs/autobill-sdk-java-test.git
+2. Under autobill-sdk-java-test directory, clone https://github.com/arifcs/autobill-sdk-java.git
+3. Build and run the project autobill-sdk-java-test.git in IDE 
+
 **Assumption**
-This client is located at http://localhost:8080
+This project is running at http://localhost:8080
+
+TODO absdk clone
 
 **Please notice**
 1. apiConfig.json is writable
