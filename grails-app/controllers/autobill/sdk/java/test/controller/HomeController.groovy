@@ -19,6 +19,7 @@ class HomeController {
             apiConfig[it] = params[it]
         }
         ConfigManager.saveConfig(apiConfig)
+        flash.message = "Saved"
         redirect(action: "index")
     }
 
