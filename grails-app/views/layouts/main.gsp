@@ -32,7 +32,7 @@
 </g:if>
 
 <div class="jumbotron text-center">
-    <h1>AutoBill Mini Client</h1>
+    <h1>AutoBill Java SDK Test with Grails</h1>
     <div class="row">
         <div class="col-sm-12">
             <ul class="nav justify-content-center">
