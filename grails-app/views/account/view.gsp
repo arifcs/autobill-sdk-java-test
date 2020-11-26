@@ -23,10 +23,27 @@
       <table class="table table-bordered table-hover">
         <tr>
           <td>Name</td><td>${account.name}</td>
+        </tr>
+        <tr>
           <td>Display Name</td><td>${account.display_name}</td>
+        </tr>
+        <tr>
           <td>Email</td><td>${account.email_address}</td>
+        </tr>
+        <tr>
           <td>Created</td><td>${account.created_on}</td>
+        </tr>
+        <tr>
           <td>Updated</td><td>${account.last_updated_on}</td>
+        </tr>
+        <tr>
+          <td>UUID<td>${account.uuid}</td>
+        </tr>
+        <tr>
+          <td>Timezone</td><td>${account.time_zone}</td>
+        </tr>
+        <tr>
+          <td>Type</td><td>${account.type}</td>
         </tr>
       </table>
     </g:if>
