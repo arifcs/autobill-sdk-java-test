@@ -19,7 +19,7 @@
   </div>
   <h2>List</h2>
   <div class="row">
-    <g:if test="${accountList.accounts.size() > 0}">
+    <g:if test="${accountList != null && accountList.accounts.size() > 0}">
       <table class="table table-bordered table-hover">
         <thead>
         <tr>
