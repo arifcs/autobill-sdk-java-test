@@ -45,6 +45,9 @@
         <tr>
           <td>Type</td><td>${account.type}</td>
         </tr>
+        <tr>
+          <td>Description</td><td>${account.description}</td>
+        </tr>
       </table>
     </g:if>
     <g:else>
