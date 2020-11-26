@@ -1,5 +1,6 @@
 package autobill.sdk.java.test.controller
 
+import com.autobill.TokenExpiredException
 import com.autobill.connect.APIConfig
 import com.autobill.dao.AccountDao
 import com.autobill.model.Account
@@ -14,6 +15,8 @@ class AccountController {
         try {
             APIConfig apiConfig = ConfigManager.getConfig()
             accountList = AccountDao.readAll(apiConfig)
+        } catch (TokenExpiredException t){
+            flash.message = "Token expired. Renew token."
         } catch (Exception e) {
             e.printStackTrace()
         }
@@ -30,6 +33,10 @@ class AccountController {
         try {
             APIConfig apiConfig = ConfigManager.getConfig()
             AccountDao.create(apiConfig, account)
+        } catch (TokenExpiredException t){
+            flash.message = "Token expired. Renew token."
+            redirect(action:"list")
+            return
         } catch (Exception e) {
             e.printStackTrace()
         }
@@ -42,6 +49,10 @@ class AccountController {
         try {
             APIConfig apiConfig = ConfigManager.getConfig()
             account = AccountDao.read(apiConfig, params.id)
+        } catch (TokenExpiredException t){
+            flash.message = "Token expired. Renew token."
+            redirect(action:"list")
+            return
         } catch (Exception e) {
             e.printStackTrace()
         }
@@ -57,6 +68,10 @@ class AccountController {
             map.put("name",newName)
             map.put("description","Updated with API at "+new Date().toString())
             account = AccountDao.update(apiConfig, params.id, map)
+        } catch (TokenExpiredException t){
+            flash.message = "Token expired. Renew token."
+            redirect(action:"list")
+            return
         } catch (Exception e) {
             e.printStackTrace()
         }
@@ -68,6 +83,10 @@ class AccountController {
         try {
             APIConfig apiConfig = ConfigManager.getConfig()
             AccountDao.delete(apiConfig, params.id)
+        } catch (TokenExpiredException t){
+            flash.message = "Token expired. Renew token."
+            redirect(action:"list")
+            return
         } catch (Exception e) {
             e.printStackTrace()
         }

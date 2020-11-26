@@ -3,6 +3,7 @@ package autobill.sdk.java.test.controller
 import com.autobill.connect.APICaller
 import com.autobill.connect.APIConfig
 import com.autobill.sdk.test.config.ConfigManager
+import com.autobill.sdk.test.config.TokenManager
 import groovy.json.JsonSlurper
 
 class TokenController {
@@ -18,19 +19,12 @@ class TokenController {
     }
 
     def renew(){
-        APIConfig apiConfig = ConfigManager.getConfig()
-        String response = APICaller.renewToken(apiConfig)
-
-        if(response == null){
+        boolean result = TokenManager.renewToken()
+        if(!result){
             flash.message = "Could not connect"
             redirect(action: "index", controller :"home")
             return
         }
-
-        def json = new JsonSlurper().parseText(response)
-        apiConfig.setAccessToken(json.access_token)
-        apiConfig.setRefreshToken(json.refresh_token)
-        ConfigManager.saveConfig(apiConfig)
         flash.message = "Token renewed"
         redirect(controller:"home", action:"index")
     }
