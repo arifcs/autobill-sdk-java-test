@@ -19,18 +19,19 @@
   </div>
   <h2>List</h2>
   <div class="row">
-    <g:if test="${accountList != null && accountList.accounts.size() > 0}">
+    <g:if test="${accountList != null && accountList.size() > 0}">
       <table class="table table-bordered table-hover">
         <thead>
         <tr>
-          <td>ID</td><td>Name</td><td>Email</td><td>Edit Name</td><td>Delete</td>
+          <td>ID</td><td>Name</td><td>Email</td><td>View</td><td>Update Name</td><td>Delete</td>
         </tr>
         </thead>
         <tbody>
-        <g:each in="${accountList.accounts}" var="account">
+        <g:each in="${accountList}" var="account">
           <tr>
             <td>${account.id}</td><td>${account.name}</td><td>${account.email_address}</td>
-            <td><g:link controller="account" action="editName">Edit</g:link></td>
+            <td><g:link controller="account" action="view" id="${account.id}">View</g:link></td>
+            <td><g:link controller="account" action="edit" id="${account.id}">Update Name</g:link></td>
             <td><g:link controller="account" action="delete" id="${account.id}">Delete</g:link></td>
           </tr>
         </g:each>
