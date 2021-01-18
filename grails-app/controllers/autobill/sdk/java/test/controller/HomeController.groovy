@@ -1,12 +1,12 @@
 package autobill.sdk.java.test.controller
 
-import com.autobill.connect.APIConfig
-import com.autobill.sdk.test.config.ConfigManager
+import com.autobill.api.client.connect.APIConfig
+import com.autobill.api.client.connect.ApiConnectorProvider
 
 class HomeController {
 
     def index() {
-        APIConfig apiConfig = ConfigManager.getConfig()
+        APIConfig apiConfig = ApiConnectorProvider.getApiConnector().getAPIConfig()
         if(apiConfig.getRedirectUrl().trim().length() == 0){
             apiConfig.redirectUrl = createLink([controller: "callBack", action: "index", absolute: true])
         }
@@ -14,11 +14,11 @@ class HomeController {
     }
 
     def save(){
-        APIConfig apiConfig = ConfigManager.getConfig()
+        APIConfig apiConfig = ApiConnectorProvider.getApiConnector().getAPIConfig()
         ["apiUrl","appUrl","clientId","clientSecret","accessToken","refreshToken","redirectUrl"].each{
             apiConfig[it] = params[it]
         }
-        ConfigManager.saveConfig(apiConfig)
+        ApiConnectorProvider.getApiConnector().saveAPIConfig(apiConfig)
         flash.message = "Saved"
         redirect(action: "index")
     }

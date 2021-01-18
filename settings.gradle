@@ -1,2 +1,2 @@
 include(':absdk')
-project(':absdk').projectDir = new File("autobill-sdk-java")
+project(':absdk').projectDir = new File("autobill-sdk-java-2")

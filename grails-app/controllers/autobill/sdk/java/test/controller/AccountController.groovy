@@ -1,23 +1,21 @@
 package autobill.sdk.java.test.controller
 
-import com.autobill.TokenExpiredException
-import com.autobill.connect.APIConfig
-import com.autobill.dao.AccountDao
-import com.autobill.model.Account
-import com.autobill.sdk.test.config.ConfigManager
+import com.autobill.api.client.connect.ApiConnectorProvider
+import com.autobill.api.client.dao.AccountDao
+import com.autobill.api.client.model.Account
 
 class AccountController {
 
     def index() { }
 
     def list(){
-        List<Account> accountList = null
         try {
-            APIConfig apiConfig = ConfigManager.getConfig()
-            accountList = AccountDao.readAll(apiConfig)
-        } catch (TokenExpiredException t){
-            flash.message = "Token expired. Renew token."
-        } catch (Exception e) {
+            List<Account> accountList = new AccountDao(ApiConnectorProvider.getApiConnector()).readAll()
+            if(accountList == null){
+                return null;
+            }
+            return accountList.accounts
+        }catch (Exception e) {
             e.printStackTrace()
         }
         [accountList : accountList]
@@ -31,13 +29,8 @@ class AccountController {
         account.name = name
         account.email_address = email
         try {
-            APIConfig apiConfig = ConfigManager.getConfig()
-            AccountDao.create(apiConfig, account)
-        } catch (TokenExpiredException t){
-            flash.message = "Token expired. Renew token."
-            redirect(action:"list")
-            return
-        } catch (Exception e) {
+            new AccountDao(ApiConnectorProvider.getApiConnector()).create(account)
+        }catch (Exception e) {
             e.printStackTrace()
         }
         flash.message = "Account created"
@@ -47,12 +40,7 @@ class AccountController {
     def view(){
         Account account = null
         try {
-            APIConfig apiConfig = ConfigManager.getConfig()
-            account = AccountDao.read(apiConfig, params.id)
-        } catch (TokenExpiredException t){
-            flash.message = "Token expired. Renew token."
-            redirect(action:"list")
-            return
+            account = new AccountDao(ApiConnectorProvider.getApiConnector()).read(params.id)
         } catch (Exception e) {
             e.printStackTrace()
         }
@@ -63,15 +51,10 @@ class AccountController {
         String newName = "UpdatedName-"+new Date().getTime()
         Account account = null
         try {
-            APIConfig apiConfig = ConfigManager.getConfig()
             Map<String, String> map = new HashMap<String, String>()
             map.put("name",newName)
             map.put("description","Updated with API at "+new Date().toString())
-            account = AccountDao.update(apiConfig, params.id, map)
-        } catch (TokenExpiredException t){
-            flash.message = "Token expired. Renew token."
-            redirect(action:"list")
-            return
+            account = new AccountDao(ApiConnectorProvider.getApiConnector()).update(params.id, map)
         } catch (Exception e) {
             e.printStackTrace()
         }
@@ -81,12 +64,7 @@ class AccountController {
 
     def delete(){
         try {
-            APIConfig apiConfig = ConfigManager.getConfig()
-            AccountDao.delete(apiConfig, params.id)
-        } catch (TokenExpiredException t){
-            flash.message = "Token expired. Renew token."
-            redirect(action:"list")
-            return
+            new AccountDao(ApiConnectorProvider.getApiConnector()).delete(params.id)
         } catch (Exception e) {
             e.printStackTrace()
         }

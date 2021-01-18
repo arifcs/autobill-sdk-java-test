@@ -1,9 +1,8 @@
 package autobill.sdk.java.test.controller
 
-import com.autobill.connect.APICaller
-import com.autobill.connect.APIConfig
-import com.autobill.sdk.test.config.ConfigManager
-
+import com.autobill.api.client.connect.APICaller
+import com.autobill.api.client.connect.APIConfig
+import com.autobill.api.client.connect.ApiConnectorProvider
 import groovy.json.JsonSlurper
 
 class CallBackController {
@@ -15,7 +14,7 @@ class CallBackController {
             redirect(action: "index", controller :"home")
             return
         }
-        String response = APICaller.getAccessToken(ConfigManager.getConfig(), code)
+        String response = APICaller.getAccessToken(ApiConnectorProvider.getApiConnector(), code)
         if(response == null){
             flash.message = "Could not connect"
             redirect(action: "index", controller :"home")
@@ -24,10 +23,10 @@ class CallBackController {
 
         def json = new JsonSlurper().parseText(response)
 
-        APIConfig apiConfig = ConfigManager.getConfig()
+        APIConfig apiConfig = ApiConnectorProvider.getApiConnector().getAPIConfig()
         apiConfig.setAccessToken(json.access_token)
         apiConfig.setRefreshToken(json.refresh_token)
-        ConfigManager.saveConfig(apiConfig)
+        ApiConnectorProvider.getApiConnector().saveAPIConfig(apiConfig)
         flash.message = "Connected successfully"
         redirect(action: "index", controller :"home")
     }

@@ -17,8 +17,6 @@
     <div class="row">
         <div class="col-sm-10 offset-sm-1 top-bar">
             <g:link class="btn btn-primary" url="${apiConfig.getAuthorizeUrl()}">Connect AutoBill</g:link>
-            <g:link class="btn btn-primary" controller="token" action="invalidate">Invalidate token</g:link>
-            <g:link class="btn btn-primary" controller="token" action="renew">Renew token</g:link>
         </div>
     </div>
     <div class="row">
