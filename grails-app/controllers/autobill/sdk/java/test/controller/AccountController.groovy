@@ -1,5 +1,6 @@
 package autobill.sdk.java.test.controller
 
+import com.autobill.api.client.connect.ApiConnector
 import com.autobill.api.client.connect.ApiConnectorProvider
 import com.autobill.api.client.dao.AccountDao
 import com.autobill.api.client.model.Account
@@ -9,7 +10,9 @@ class AccountController {
     def index() { }
 
     def list(){
-        List<Account> accountList = new AccountDao(ApiConnectorProvider.getApiConnector()).readAll()
+        ApiConnector apiConnector = ApiConnectorProvider.getApiConnector()
+        AccountDao accountDao = new AccountDao(apiConnector)
+        List<Account> accountList = accountDao.readAll()
         [accountList : accountList]
     }
 
