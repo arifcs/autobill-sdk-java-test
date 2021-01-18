@@ -1,6 +1,7 @@
 package autobill.sdk.java.test
 
 import com.autobill.api.client.connect.ApiConnector
+import com.autobill.api.client.connect.ApiConnectorProvider
 import com.autobill.api.client.connect.handler.InMemoryConfigHandler
 
 class BootStrap {

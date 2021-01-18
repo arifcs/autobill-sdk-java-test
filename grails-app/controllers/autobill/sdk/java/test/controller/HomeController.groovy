@@ -7,7 +7,7 @@ class HomeController {
 
     def index() {
         APIConfig apiConfig = ApiConnectorProvider.getApiConnector().getAPIConfig()
-        if(apiConfig.getRedirectUrl().trim().length() == 0){
+        if(apiConfig.getRedirectUrl() == null || apiConfig.getRedirectUrl().trim().length() == 0){
             apiConfig.redirectUrl = createLink([controller: "callBack", action: "index", absolute: true])
         }
         [apiConfig : apiConfig]

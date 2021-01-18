@@ -9,15 +9,7 @@ class AccountController {
     def index() { }
 
     def list(){
-        try {
-            List<Account> accountList = new AccountDao(ApiConnectorProvider.getApiConnector()).readAll()
-            if(accountList == null){
-                return null;
-            }
-            return accountList.accounts
-        }catch (Exception e) {
-            e.printStackTrace()
-        }
+        List<Account> accountList = new AccountDao(ApiConnectorProvider.getApiConnector()).readAll()
         [accountList : accountList]
     }
 
